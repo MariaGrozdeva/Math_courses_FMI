@@ -1,0 +1,456 @@
+% !TXS template
+\documentclass[french]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{amssymb}
+% Title Page
+
+\title{Теория на Множествата}
+\author{Мария Гроздева}
+\date{18.02.2022г.}
+
+
+\begin{document}
+	\maketitle
+	\author
+	
+	\subsection*{Задача 1 (ZFC):}
+	Да се докаже, че едно множество $A$ е крайно точно
+	тогава, когато всяко непразно подмножество на $\mathcal{P}(A)$ има максимален относно $\subseteq$ елемент.
+
+	
+	\subsection*{Решение:}
+	$\Longrightarrow$ ) Нека $Fin(A)$, $B \subseteq \mathcal{P}(A)$,
+	$B \not= {\O}$. \\
+	\\
+	$C \rightleftharpoons \{n\ |\ (\exists x \in B)(|x| = n)\}$. \\
+	$C \not= {\O}$ (защото $B \not= {\O}$), $C \subseteq \omega$. \\
+	$n \in C \Rightarrow n \le |A|$ (всяко подмножество на $A$ има най-много
+	$|A|$ елемента). \\
+	\\
+	Твърдя, че $C$ има най-голям елемент. \\
+	Наистина, нека $D$ е множеството от всички горни граници на $C$, т.е. \\
+	$D \rightleftharpoons \{k\ |\ (\forall n \in C)(n \le k)\}$. \\
+	$D \not= {\O}$ (защото $|A| \in D$), $D \subseteq \omega$. \\
+	Нека $k_0$ е най-малкият елемент на $D$. \\
+	Нека $k_0 = 0$. Тогава $C = \{0\}$. Значи, $B = {\O}$. Но, по условие, $B \not= {\O}$. \\
+	Следователно $k_0 \not= 0$. \\
+	$k_0$ е естествено число, т.е. $\neg Limit(k_0)$. Тогава, $k_0 = S(k_0')$ за някое $k_0'$. \\
+	$k_0' < k_0$, $k_0$ е най-малкият елемент на мн-вото $D$. Следователно $k_0' \notin D$. Тогава $\exists n_0 \in C$, такова че $k_0' < n_0$. Нека
+	$n_0$ е свидетел за това съществуване, т.е. $n_0 \in C$, $k_0' < n_0$. \\
+	Забелязваме, че $S(k_0') = n_0,\ k_0 = S(k_0') = n_0,\ k_0 = n_0$. \\
+	$n_0 \in C$. Тогава съществува $b \in B, |b| = n_0$. Нека $b$ е свидетел. \\
+	\\
+	Твърдя, че $b$ е максимален относно $\subseteq$ елемент за $B$. \\
+	Наистина, нека $x \in B, |x| = m$. \\ 
+	Нека $b \subseteq x$. Тогава $|b| = n_0 \le m = |x|,\ n_0 \le m$. \\
+	Но $n_0$ е най-големият елемент на множеството $C, |x| = m \in C$, следователно $n_0 = m,\ b = x, b$ е максимален елемент за $B$. \\
+	Нека $b \subseteq x, b \not= x$. Тогава $|b| < |x|$. Но $|b| \in C, |x| \in C, |b| = n_0$ - максимален елемент. Следователно $|x| \le |b|$ Противоречие. \\
+	Следователно, $b$ е максимален относно $\subseteq$ елемент за $B$. \\
+    \\	
+	$\Longleftarrow$ ) Ще докажа контрапозицията на твърдението: \\
+	Ако едно множество $A$ не е крайно, то съществува непразно подмножество на $\mathcal{P}(A)$, което няма максимален елемент относно $\subseteq$, \\
+	$\neg Fin(A) \Rightarrow \neg \forall B (B \not= {\O}\ \&\ B \subseteq \mathcal{P}(A) \Rightarrow (\exists b \in B)(\forall x \in B)(b \subseteq x \Rightarrow x = b))$ \\
+	\\
+	Нека $\neg Fin(A)$. \\
+	Нека $B = \{x\ |\ x \in \mathcal{P}(A)\ \&\ Fin(x)\},\ B \not= {\O},\ B \subseteq \mathcal{P}(A)$. \\
+	Твърдя, че $B$ няма максимален елемент относно $\subseteq$. \\
+	Наистина, нека $b \in B$. Тогава $Fin(b),\ |b| = n$. \\
+	$\neg Fin(A \setminus b)$ (защото $\neg Fin(A)$), в частност $A \setminus b \not= {\O}$. \\
+	Нека $u \in A \setminus b.$ Тогава $b \cup \{u\} \subseteq A,\ b \cup \{u\} \in B$. \\
+	$|b \cup \{u\}| = S(n) > n = |b|,\ b \subsetneq b \cup \{u\}$. \\
+	Така, $(\forall b \in B)(\exists b' \in B)(b \subseteq b'\ \&\ b \not= b')$. \\
+	Следователно, $B$ няма максимален елемент относно $\subseteq$. \\
+	$\square$
+	
+	
+	\subsection*{Задача 2:}
+	Нека $f : \mathcal{P}(B) \to \mathcal{P}(B)$ е монотонна функция и $I$ е нейната най-малка неподвижна точка. Докажете, че:
+	\begin{itemize} 
+		\item ако $I \subseteq A \subseteq B$ и $f_A : \mathcal{P}(A) \to \mathcal{P}(A)$ е дефинирана с $f_A(X) = A \cap f(X)$ за всяко $X \subseteq A$, то $I$ е най-малката неподвижна точка и на $f_A$;
+
+		
+		\item ако $B \subseteq C$ и $f^C : \mathcal{P}(C) \to \mathcal{P}(C)$ е дефинирана с $f^C(X) = f(X \cap B)$ за всяко $X \subseteq C$, то $I$ е най-малката неподвижна точка и на $f^C$.
+	\end{itemize}
+	
+	\subsection*{Решение:}
+	\begin{itemize} 
+		\item Твърдя, че $I$ е неподвижна точка на $f_A$. \\
+		Наистина, \\ 
+		$I \subseteq A,\ f_A(I) = A \cap f(I) = A \cap I =$ // $I$ е неподвижна точка на $f$ \\
+		$= I$.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ // $I \subseteq A$ \\
+		\\
+		Твърдя, че  $I$ е най-малката неподвижна точка на $f_A$. \\
+		Наистина, да допуснем, че $J$ е най-малката неподвижна точка на $f_A$, т.е. $J \subseteq I \subseteq A \subseteq B$, $f_A(J) = J.$ \\
+		$J$ е неподвижна точка и за $f$. \\
+		Наистина, от монотонността на $f$ и $J \subseteq I$, получаваме  $f(J) \subseteq f(I) = I \subseteq A$. Тогава $J = f_A(J) = A \cap f(J) = f(J)$. \\
+		Но $I$ е най-малката неподвижна точка на $f$. Така $I \subseteq J$. \\
+		Следователно $J = I$ и $I$ е най-малката неподвижна точка на $f_A$.
+		
+		\item Твърдя, че $I$ е неподвижна точка на $f^C$. \\
+		Наистина, \\
+		$f^C(I) = f(I \cap B) = f(I) = I$. \\
+		\\
+		Твърдя, че  $I$ е най-малката неподвижна точка на $f^C$. \\
+		Наистина, да допуснем, че $J$ е най-малката неподвижна точка на $f^C$, т.е. $J \subseteq I \subseteq B \subseteq C$, $f^C(J) = J.$ \\
+		$J$ е неподвижна точка и за $f$. \\
+	    Наистина, $J = f^C(J) = f(J \cap B) = f(J)$. \\
+		Но $I$ е най-малката неподвижна точка на $f$. Така $I \subseteq J$. \\
+		Следователно $J = I$ и $I$ е най-малката неподвижна точка на $f^C$. \\
+		$\square$		
+	\end{itemize}
+
+
+    \subsection*{Задача 3 (ZF):}
+    Нека $x$ е множество. Тогава $x$ е ординал точно тогава,
+    когато всяко транзитивно собствено подмножество на $x$ е елемент на $x$.
+    
+	\subsection*{Решение:}
+	$\Longrightarrow$ ) Нека $ord(x)$. \\
+	\\
+	Твърдим, че ако $y \subsetneq x$ и $trans(y)$, то $y \in x$. \\
+	Нека $u = x \setminus y$. $u \not= {\O}$, защото ако $u = {\O}$, то $y = x$. \\
+	$\in WO(x)$ и значи $\exists z (z \in u\ \&\ z \cap u = {\O})$, тоест $z$ е най-малкият елемент относно $\in$ на множеството $u$. \\
+	\\
+	Твърдя, че $y = z$. \\
+	Наистина, нека $t \in y$, произволен елемент. Ще покажа, че $t \in z$. \\
+	$t \in y$, значи $t \in x^*$, защото $y \subsetneq x$. \\ 
+	$z \in u,\ u \subseteq x$, значи $z \in x^{**}$. \\
+	От $^*, ^{**}$ и това, че $\in WO(x)$, точно едно от $t \in z,\ z \in t,\ t = z$ е в сила. \\
+	\\
+	Твърдя, че е в сила $t \in z$. \\
+	Наистина, да допуснем, че $z \in t$. \\
+	$t \in y,\ trans(y)$, значи $t \subseteq y$. Тогава $z \in y$. Но $z \in u,\ u = x \setminus y$ и значи $z \in y$ и $z \notin y$. Невъзможно! \\
+	Да допуснем, че $t = z$. \\
+	Отново, $t = z,\ z \in u,\ u = x \setminus y$ и $t \notin y$. Противоречие. \\
+	Следователно, $t \in z$. \\
+	Следователно $y \subseteq z$. \\
+	\\
+	Нека $t \in z$, произволен елемент. Ще покажа, че $t \in y$. \\
+	От избора на $z$ следва, че $t \notin u$. Освен това, $t \in z, z \in x$, откъдето по транзитивността на $x$ следва, че $t \in x$. Получаваме, че $t \in x \setminus u = y$. \\
+	Следователно $z \subseteq y$. \\
+	\\
+	Следователно $y = z$. \\
+	$y = z,\ z \in u,\ u \subseteq x$. Тогава $y \in x$. \\
+	\\
+	$\Longleftarrow$ ) Нека $x$ е множество. Твърдим, че \\
+	$\forall u((u \subsetneq x \ \&\ trans(u)\Rightarrow u \in x) \Rightarrow ord(x))$. \\
+	\\
+	\textbf{1 случай:} Ако $x = {\O}$, то твърдението е тривиално изпълнено. \\
+	\\
+	\textbf{2 случай:} Нека $x \not= {\O}$. \\
+	Нека $\forall u(u \subsetneq x \ \&\ trans(u)\Rightarrow u \in x)$ и да допуснем, че $\neg ord(x)$. \\
+	Ще докажа, че всеки ординал е собствено подмножество на $x$, \\
+	$$\forall \alpha(\alpha \subsetneq x).$$
+	Нека $\varphi(\alpha, x) \leftrightharpoons \alpha \subsetneq x$. \\ 
+	Чрез трансфинитна индукция ще докажа, че $\forall \alpha \varphi(\alpha, x)$: 
+	\begin{itemize}
+		\item $\varphi(0, x)$, ${\O} \subsetneq x$ ($x \not= {\O}$). 
+		
+		\item Ще докажа, че $\forall \alpha (\varphi(\alpha, x) \Rightarrow \varphi(S(\alpha), x))$. \\
+		Нека $\alpha$ - произволен ординал и нека $\varphi(\alpha, x)$. \\
+		$\alpha \subsetneq x,\ ord(\alpha) \Rightarrow trans(\alpha)$. Тогава $\alpha \in x$. \\
+		$\alpha \subsetneq x,\ \alpha \in x$. Следователно $\alpha \cup \{\alpha\} = S(\alpha) \subsetneq x$.
+		
+		\item Ще докажа, че $\forall \alpha (Limit(\alpha)\ \&\ (\forall \beta < \alpha) \varphi(\beta, x) \Rightarrow \varphi(\alpha, x))$. \\
+		Нека $Limit(\alpha)$ и нека $(\forall \beta < \alpha) (\varphi(\beta, x))$, т.е. $(\forall \beta < \alpha)(\beta \subsetneq x)$. \\
+		Но $\alpha = \cup\{\beta\ |\ \beta < \alpha\}$. \\
+		Следователно $\alpha \subseteq x$. Но $ord(\alpha), \neg ord(x)$. Значи $\alpha \subsetneq x$, т.е. $\varphi(\alpha, x)$.			
+	\end{itemize}
+	Доказахме, че $\forall \alpha(\alpha \subsetneq x)$. \\
+	Но $trans(\alpha)$. Следователно $\forall \alpha(\alpha \subsetneq x\ \&\ trans(\alpha))^*$. \\
+	Но от $^*$ получаваме, че $\forall \alpha(\alpha \in x)$. Тоест, получихме множество на всички ординали. Абсурд! Противоречието се получи, защото допуснахме, че $\neg ord(x)$. Следователно $ord(x)$. \\
+	$\square$	
+	
+	
+	\subsection*{Задача 4 (ZF):}
+	Нека $\varphi(x)$ е теоретико-множествено свойство. Ще казваме, че $\varphi$ е транзитивно върху ординалите, ако е в сила, че: \\
+	$$(\forall \alpha)(\forall \beta)[\alpha \in \beta\ \&\ \varphi(\beta) \Rightarrow \varphi(\alpha)].$$ \\
+	Докажете, че ако $\varphi$ е транзитивно върху ординалите, то: \\
+	$(i)$ за всеки ординал $\alpha$, за който $\neg \varphi(\alpha)$, е в сила, че $(\forall \beta)[\varphi(\beta) \Rightarrow \beta < \alpha]$; \\
+	$(ii)$ ако не съществува множество $A$, такова че $(\forall \alpha)[\alpha \in A \Longleftrightarrow \varphi(\alpha)]$, то $\forall \alpha (\varphi(\alpha)).$ \\
+	
+	\subsection*{Решение:}
+	$(i)$ Нека $\alpha$ е ординал и нека $\neg \varphi(\alpha)$. \\
+	Нека $\beta$ е произволен ординал и нека $\varphi(\beta)$. \\
+	Твърдя, че $\beta < \alpha$. \\
+	Знаем, че $(\forall \alpha)(\forall \beta)[\alpha \in \beta\ \&\ \varphi(\beta) \Rightarrow \varphi(\alpha)].$ Но $\neg \varphi(\alpha)$. \\
+	Значи, $\neg (\alpha \in \beta\ \&\ \varphi(\beta)),\ \alpha \notin \beta \vee \neg \varphi(\beta)$. Но $\varphi(\beta)$. Тогава $\alpha \notin \beta \stackrel{\mathrm{def}}{\longleftrightarrow} \alpha \not< \beta$. \\
+	Но $\alpha$ и $\beta$ - ординали. Тогава е в сила точно едно от трите: \\
+	$\alpha < \beta,\ \beta < \alpha,\ \alpha = \beta$. Но $\alpha \not< \beta$. Значи или $\beta < \alpha$, или $\alpha = \beta$. Твърдя, че $\beta < \alpha$. \\
+	Наистина, да допуснем, че $\alpha = \beta$. Но $\varphi(\beta),$ значи $\varphi(\alpha)$. Но $\neg\varphi(\alpha)$. \\ 
+	Невъзможно! \\
+	Следователно, $\beta < \alpha$. \\
+	\\
+	$(ii)$ Ще докажа контрапозицията на твърдението, т.е. \\
+	Ако $\exists \alpha (\neg \varphi(\alpha))$, то съществува множество $A$, такова че $(\forall \alpha)[\alpha \in A \Longleftrightarrow \varphi(\alpha)]$. \\
+	Нека е изпълнено $\exists \alpha (\neg \varphi(\alpha))$ и нека $\beta$ е най-малкият ординал, за който $\neg \varphi(\beta)$, т.е. $\forall \gamma (\gamma < \beta \Rightarrow \varphi(\gamma))$ $^*$. \\
+	\\
+	Твърдя, че $\beta$ е такова множество, че $(\forall \alpha)[\alpha \in \beta \Longleftrightarrow \varphi(\alpha)]$. \\
+	\\
+	Наистина, нека първо $\gamma \in \beta$ е произволен ординал. Тогава $\gamma < \beta$ и от $^*$ следва, че $\varphi(\gamma)$. \\
+	Нека сега $\gamma$ е произволен ординал, за който $\varphi(\gamma)$. Твърдя, че $\gamma \in \beta$. \\
+	Наистина, да допуснем, че $\gamma = \beta$. Но $\neg \varphi(\beta)$, значи $\neg \varphi(\gamma)$. Противоречие. \\
+	Да допуснем, че $\beta < \gamma$. Тогава $\beta \in \gamma\ \&\ \varphi(\gamma)$. Но $\varphi$ е транзитивно, следователно $\varphi(\beta)$. Противоречие. \\
+	Следователно $\gamma < \beta$, т.е. $\gamma \in \beta$. \\
+	\\	
+	Тогава $(\forall \alpha)[\alpha \in \beta \Longleftrightarrow \varphi(\alpha)]$, с което съществуването на търсеното множество е доказано. \\
+	$\square$
+	
+	
+	\subsection*{Задача 5 (ZF):}
+	Нека $A$ е безкрайно множество, т.е. $\forall n (\overline{\overline{A}} \not= \overline{\overline{n}})$. Да се докаже, че ако съществува добра наредба $\le_1$ в $A$, то съществува добра наредба $\le_2$ в $A$, за която добре наредените множества $\langle A, \le_1 \rangle$ и $\langle A, \le_2 \rangle$ не са изоморфни.
+	
+	\subsection*{Решение:}
+   	Доказани теореми и твърдения, които ще използвам в доказателството: \\
+   	\begin{itemize}
+   		\item Нека $\langle W, \le \rangle$ е д.н.м. Тогава съществуват единствен ординал $\alpha$ и единствен изоморфизъм $f : W \to \alpha$ между д.н.м. $\langle W, \le \rangle$ и $\langle \alpha, \in \rangle$. $^*$
+   		\item $\forall \alpha(\omega \le \alpha \Rightarrow \overline{\overline{\alpha}} = \overline{\overline{S(\alpha)}})$. $^{**}$
+   		\item Нека $W_1$ и $W_2$ са д.н.м. Тогава е в сила точно едно
+   		от трите: $^{***}$
+   		\begin{itemize}
+   	    	\item $W_1$ е изоморфно на $W_2$,
+   	    	\item $W_1$ е изоморфно на собствен начален сегмент на $W_2$,
+   	    	\item $W_2$ е изоморфно на собствен начален сегмент на $W_1$.
+    	\end{itemize}
+   	\end{itemize}
+    Нека $\langle A, \le_1 \rangle$ е д.н.м. \\
+    Нека $\alpha$ е единственият ординал и $f : A \to \alpha$ - единственият изоморфизъм, за които $\langle A, \le_1 \rangle \cong \langle \alpha, \in \rangle$. ($^*$) \\
+    $\overline{\overline{\alpha}} = \overline{\overline{S(\alpha)}}$ ($^{**}$). Следователно, $\exists g(g : \alpha \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} S(\alpha))$. Нека $g$ е свидетел, т.е $g : \alpha \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} S(\alpha)$. \\
+    \\
+    Твърдя, че $\langle \alpha, \in \rangle \not\cong \langle S(\alpha), \in \rangle$. \\
+    $\alpha$ е собствен начален сегмент на $S(\alpha)$, защото $\alpha \subsetneq S(\alpha))$ и $\alpha$ е затворено надолу относно $\in$. \\
+    Но тогава $\langle \alpha, \in \rangle \cong \langle \alpha, \in \rangle$ с единствен изоморфизъм идентитетът и значи $\langle \alpha, \in \rangle \not\cong \langle S(\alpha), \in \rangle$. ($^{***}$) \\
+    \\
+    Дефинираме $\le_2$ по следния начин: \\
+    $a \le_2 b \Longleftrightarrow g(f(a)) \in g(f(b))$. \\
+    Твърдя, че $\langle A, \le_2 \rangle \cong \langle S(\alpha), \in  \rangle$, а от там $\langle A, \le_2 \rangle$ е д.н.м. \\
+    Наистина, $f : A \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} \alpha$, $g : \alpha \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} S(\alpha)$, значи $f \circ g : A \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} S(\alpha)$. Освен това $f \circ g$ запазва наредбата (от деф. на $\le_2$). \\
+    Значи, $\langle A, \le_2 \rangle \cong \langle S(\alpha), \in \rangle$ с единствен изоморфизъм $f \circ g$. Следователно $\langle A, \le_2 \rangle$ е д.н.м. \\
+    \\
+    Получихме, че: \\
+    $\langle A, \le_1 \rangle \cong \langle \alpha, \in \rangle$, \\
+    $\langle A, \le_2 \rangle \cong \langle S(\alpha), \in \rangle$, \\
+    $\langle \alpha, \in \rangle \not\cong \langle S(\alpha), \in \rangle$. \\
+    \\
+    Тогава,  $\langle A, \le_1 \rangle$ и  $\langle A, \le_2 \rangle$ са д.н.м. и  $\langle A, \le_1 \rangle \not\cong \langle A, \le_2 \rangle$. \\
+    $\square$
+ 
+   
+   	\subsection*{Задача 6 (ZF):}
+   	Да се докаже, че в $\langle \mathcal{P}(\omega), \subseteq \rangle$ има вериги, които са равномощни с $\mathcal{P}(\omega)$.
+   	
+   	\subsection*{Решение:}
+   	$\overline{\overline{\mathcal{P}(\omega)}} = \overline{\overline{2^\omega}} = \overline{\overline{\mathbb{R}}}$. \\
+   	Следователно, свеждаме доказателството до намиране на верига в \\
+   	$\langle \mathcal{P}(\omega), \subseteq \rangle$, която е равномощна с континуума $\mathbb{R}$. \\
+   	\\
+   	$\langle \mathbb{Q}, < \rangle$ е линейно наредено множество. \\
+   	Разрез (англ. cut) на л.н.м. $\langle \mathbb{Q}, < \rangle$ e наредена двойка $\langle A, B \rangle$ от множества, такива че:
+   	\begin{itemize}
+   		\item $A$ и $B$ са непразни непресичащи се подмножества на $\mathbb{Q}$, такива че $A \cup B = \mathbb{Q}$.
+   		\item Ако $a \in A$ и $b \in B$, то $a < b$.
+   	\end{itemize}
+    Разрез $\langle A, B \rangle$ е разрез на Дедекинд (англ. Dedekind cut), ако $A$ няма най-голям елемент. \\
+    Заб.: Ще идентифицираме разрез само с първия му елемент $A$, тъй като $B = \mathbb{Q} \setminus A$. \\
+    \\
+    Ще използвам конструкцията на Дедекинд за представане на реалните числа (англ. Dedekind cut construction of reals). Тя ни $"$казва$"$, че всеки разрез на Дедекинд представлява единствено \textbf{реално число}. \\
+    Нека $r_1$ и $r_2$ са реални числа. Тогава дефинираме следната линейна наредба върху реалните числа: \\
+    $r_1 \le r_2 \stackrel{\mathrm{def}}{\longleftrightarrow} r_1 \subseteq r_2$. \\
+    \\
+    Получихме, че $f : \mathbb{R} \rightarrowtail \mathcal{P}(\mathbb{Q})$,\ $r \in \mathbb{R}, f(r) = \{x \in \mathbb{Q}\ |\ x < r\} \subsetneq \mathbb{Q}$ и $f$ запазва наредбата. \\
+    Но $\exists h(h : \mathbb{Q} \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} \mathbb{\omega})$, откъдето следва, че $\langle \mathcal{P}(\mathbb{Q}), \subseteq \rangle \cong \langle \mathcal{P}(\mathbb{\omega}), \subseteq \rangle$. Нека $t$ е изоморфизмът между тях. \\
+    Получаваме, че $f \circ t : \mathbb{R} \rightarrowtail \mathcal{P}(\mathbb{\omega})$ и $f \circ t$ запазва наредбата. \\
+    \\
+    Нека $g : \mathbb{R} \to f \circ t[\mathbb{R}],\ r \in \mathbb{R}, g(r) = f(r)$. Твърдя, че $g : \mathbb{R} \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} f \circ t[\mathbb{R}]$. \\
+    Наистина, нека $g(r_1) = g(r_2)$ за някои $r_1 \in \mathbb{R}, r_2 \in \mathbb{R}$. \\
+    $g(r_1) \in f \circ t[\mathbb{R}], g(r_2) \in f \circ t[\mathbb{R}]$. Но $f \circ t$ е инекция, следователно $r_1 = r_2$. Значи $g : \mathbb{R} \rightarrowtail f \circ t[\mathbb{R}]$. \\ 
+    Нека $a \in Range(g)$. Тогава $a \in f \circ t[\mathbb{R}]$. Значи има $r \in \mathbb{R}$, такова че $f \circ t(r) = a$. Значи $g : \mathbb{R} \twoheadrightarrow f \circ t[\mathbb{R}]$. \\ 
+    \\
+    Следователно, $g : \mathbb{R} \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} f \circ t[\mathbb{R}]$. \\
+    Но също така, $g$ запазва наредбата (от дефиницията й). \\
+    Тогава, $\langle \mathbb{R}, < \rangle \cong \langle f \circ t[\mathbb{R}], \subseteq \rangle$ с единствен изоморфизъм $g$.\\
+    Но тогава $f \circ t[\mathbb{R}]$ е линейно наредено и $f \circ t[\mathbb{R}] \subsetneq \mathcal{P}(\mathbb{\omega})$ \\
+	С това доказахме, че $f \circ t[\mathbb{R}]$ е верига в $\langle \mathcal{P}(\omega), \subseteq \rangle$. \\
+	\\
+	$g : \mathbb{R} \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} f \circ t[\mathbb{R}]$. \\
+	Следователно, $\overline{\overline{\mathcal{P}(\omega)}} = \overline{\overline{\mathbb{R}}} = \overline{\overline{f \circ t[\mathbb{R}]}}$. \\
+	$\square$
+	
+	
+	\subsection*{Задача 7 (ZF):}
+	Да се докаже, че за произволно множество $A$ са в сила
+	следните:
+	\begin{enumerate}
+		\item $\overline{\overline{A}} = \overline{\overline{A \cup \{A\}}} \Rightarrow \overline{\overline{\mathcal{P}(A)}} = \overline{\overline{\mathcal{P}(A) \cup \{\mathcal{P}(A)\}}}$;
+		\item $\overline{\overline{A}} = \overline{\overline{A \cup \{A\}}} \Rightarrow \overline{\overline{\mathcal{P}({\mathcal{P}(A)})}} = \overline{\overline{\mathcal{P}({\mathcal{P}(A)}) \times \mathcal{P}({\mathcal{P}(A)})}}$.
+	\end{enumerate}
+
+	\subsection*{Решение:}
+	Ако $A = {\O}$ или $Fin(A)$, то предпоставките на импликациите са лъжа, следователно твърденията са тривиално верни. Нека $A \not= {\O}$ и $\neg Fin(A)$.
+	\begin{enumerate}
+		\item Нека $f : A \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} A \cup \{A\}$. \\
+		$f : A \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} A \cup \{A\}$ и $A \in Range(f)$. Тогава $\exists ! a_0 \in Dom(f) = A$, т.че $f(a_0) = A$. Нека $a_0$ е свидетел, т.е. $a_0 \in A, f(a_0) = A$. \\
+		\\
+		Нека $C = \{\{c\}\ |\ c \in A\}$. $C \subseteq \mathcal{P}(A)$, защото $(\forall a \in A)(\{a\} \subseteq A)$, т.е.
+		$(\forall a \in A)(\{a\} \in \mathcal{P}(A))$. \\
+		\\
+		Нека $id_{\mathcal{P}(A) \setminus C}$ е идентитетът на множеството $\mathcal{P}(A) \setminus C$. \\
+		\\
+		Дефинираме функцията $g$ по следния начин: \\
+		$g(\{x\}) = 
+		\begin{cases} 
+			\mathcal{P}(A), & x = a_0,\ \ \\ 
+			\{f(x)\}, & x \not= a_0\ \&\ x \in A.
+		\end{cases}$
+		\\ \\
+		$g : C \to C \cup \{{\mathcal{P}(A)}\}$. \\
+		Наистина, $\{x\} \in Dom(g) \Longleftrightarrow x \in A$. Но от дефиницията на $C$ следва, че $\{x\} \in C$. \\
+		Тогава $Dom(g) = C$. \\
+		\\
+		Ако $x = a_0$, то $g(\{x\}) = \mathcal{P}(A) \in C \cup \{{\mathcal{P}(A)}\}$. \\
+		Ако $x \not= a_0$ и $x \in A$, то $g(\{x\}) = \{f(x)\}$. Но $f(x) \in A$, следователно $\{f(x)\} \in C \subseteq C \cup \{{\mathcal{P}(A)}\}$. \\
+		Тогава $Range(g) = C \cup \{{\mathcal{P}(A)}\}$. \\
+		\\
+		Твърдя, че $g : C \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} C \cup \{{\mathcal{P}(A)}\}$. \\
+		Наистина, нека $g(\{x\}), g(\{y\}) \in Range(g)$ и нека $g(\{x\}) = g(\{y\})$.
+		\begin{itemize}
+			\item Ако $g(\{x\}) = g(\{y\}) = \mathcal{P}(A)$, то $x = y = a_0$. Но $a_0$ беше единствено. Следователно $x = y$.
+			\item Ако $\{f(x)\} = g(\{x\}) = g(\{y\}) =\{f(y)\}$, то $\{f(x)\} = \{f(y)\}$ за $x,y \in A$. Но $\{f(x)\} = \{f(y)\} \Longleftrightarrow f(x) = f(y)$. Но $f$ е инекция, следователно $x = y$.
+		\end{itemize}
+		Следователно, $g : C \rightarrowtail C \cup \{{\mathcal{P}(A)}\}$. \\
+		\\
+		Нека $y \in Range(g)$. Тогава:
+		\begin{itemize}
+			\item $y = \mathcal{P}(A)$. Тогава $g(\{a_0\}) = y = \mathcal{P}(A)$.
+			\item $y = \{f(x)\}$. $Dom(f) = A$. Значи $x \in A, x \not= a_0$, защото ако допуснем, че $x = a_0$, то $y = \{f(a_0)\} = \{A\}$. Но $y \in Range(g) \Rightarrow \{A\} \in Range(g)$. Тогава $\{A\} \in C$ и от дефиницията на $C$, $A \in A$. \\
+			Противоречие. \\
+			Тогава $x \in A, x \not= a_0$ и значи $g(\{x\}) = y$.
+		\end{itemize}
+		Следователно, $g : C \twoheadrightarrow C \cup \{{\mathcal{P}(A)}\}$ и значи \\
+		$g : C \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} C \cup \{{\mathcal{P}(A)}\}$. \\
+		\\
+		Дефинираме функцията $h$ по следния начин: $h = g \cup id_{\mathcal{P}(A) \setminus C}$. \\
+		Очевидно функциите $g$ и $id_{\mathcal{P}(A) \setminus C}$ са съвместими, тъй като \\
+		$Dom(g) = C,\ Dom(id_{\mathcal{P}(A) \setminus C}) = \mathcal{P}(A) \setminus C$. \\
+		Тогава $Func(h)$, \\
+		$Dom(h) = Dom(g) \cup Dom(id_{\mathcal{P}(A) \setminus C}) = C \cup \mathcal{P}(A) \setminus C = \mathcal{P}(A)$, \\
+		$Range(h) = Range(g) \cup Range(id_{\mathcal{P}(A) \setminus C}) = C \cup \{{\mathcal{P}(A)}\} \cup \mathcal{P}(A) \setminus C = \mathcal{P}(A) \cup \{\mathcal{P}(A)\}$. \\
+		Следователно, $h : \mathcal{P}(A) \to \mathcal{P}(A) \cup \{\mathcal{P}(A)\}$. \\
+		\\
+		Твърдя, че $h : \mathcal{P}(A) \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} \mathcal{P}(A) \cup \{\mathcal{P}(A)\}$. \\
+		$h = g \cup id_{\mathcal{P}(A) \setminus C}$, \\
+		$Dom(g) \cap Dom(id_{\mathcal{P}(A) \setminus C}) = {\O}$, \\
+		$Range(g) \cap Range(id_{\mathcal{P}(A) \setminus C}) = {\O}$. \\
+		Но обединение на биективни функции, чиито дефиниционни области и области от стойности са непресичащи се, е биективна функция. \\
+		\\
+		Тогава  $h : \mathcal{P}(A) \mathbin{\rightarrowtail \hspace{-8pt} \twoheadrightarrow} \mathcal{P}(A) \cup \{\mathcal{P}(A)\}$, откъдето $\overline{\overline{\mathcal{P}(A)}} = \overline{\overline{\mathcal{P}(A) \cup \{\mathcal{P}(A)\}}}$.
+	    \item Ще разгледам поотделно двете страни:
+	    \begin{itemize}
+	    	\item $\overline{\overline{\mathcal{P}(\mathcal{P}(A))}} = \overline{\overline{^{\mathcal{P}(A)}\!2}}$, защото $\overline{\overline{\mathcal{P}(X)}} = \overline{\overline{^X\!2}}$, \\
+	    	$\overline{\overline{^{\mathcal{P}(A)}\!2}} = \overline{\overline{^{\mathcal{P}(A) \cup \{\mathcal{P}(A)\}}\!2}}$, от 1), \\
+	    	$\overline{\overline{^{\mathcal{P}(A) \cup \{\mathcal{P}(A)\}}\!2}} = \overline{\overline{^{\mathcal{P}(A)}\!2 \times ^{\{\mathcal{P}(A)\}}\!2}}$, защото ако $B \cap C = {\O}$, то $\overline{\overline{^{B \cup C}\!2}} = \overline{\overline{^B\!2 \times ^C\!2}}$.
+	    	\item $\overline{\overline{\mathcal{P}(\mathcal{P}(A)) \times \mathcal{P}(\mathcal{P}(A))}} = \overline{\overline{^{\mathcal{P}(A)}\!2 \times ^{\mathcal{P}(A)}\!2}}$, защото $\overline{\overline{\mathcal{P}(X)}} = \overline{\overline{^X\!2}}$.
+	    \end{itemize}
+	    Трябва да покажем, че $\overline{\overline{^{\mathcal{P}(A)}\!2 \times ^{\{\mathcal{P}(A)\}}\!2}} = \overline{\overline{^{\mathcal{P}(A)}\!2 \times ^{\mathcal{P}(A)}\!2}}$.
+	\end{enumerate}
+	$\square$
+
+
+	\subsection*{Задача 8 (ZFC):}
+	Нека $X \subseteq \mathbb{R}$ е добре наредено от обичайната наредба
+	в $\mathbb{R}$. Докажете, че $X$ е или крайно, или изброимо.
+	
+	\subsection*{Решение:}
+	Твърдим, че ако $X$ е безкрайно, то $X$ е изброимо. \\
+	Нека $\neg Fin(X)$. \\
+	Нека $\langle \mathbb{Q}_k\ |\ k \in \omega \rangle$ е индексиране на рационалните числа. \\
+	\\
+	Нека $x$ е произволен елемент на множеството $X$. \\
+	Нека $S(x)$ е най-малкият елемент на множеството $C = \{y\ |\ x < y\}$. Такъв елемент със сигурност съществува, тъй като $WO(X),\ C \subseteq X$, следователно $C$ има най-малък елемент. \\
+	Ако $X$ има най-голям елемент, нека го означим със $z$ и нека $S(z) = z + 1$. \\
+	\\
+	$x \not= S(x)$. Рационалните числа са гъсти в множеството на реалните. Следователно $\exists q_x (x < q_x < S(x))$. Нека $q_x$ е първото рационално число от зададената индексация на $\mathbb{Q}$, такова че $x < q_x < S(x)$. \\
+	\\
+	Нека $f : X \to \mathbb{Q}$, $f(x) = q_x$ е функцията, която на всеки елемент от множеството $X$ ни съпостява рационално число по описания по- горе начин. \\
+	Твърдя, че $f : X \rightarrowtail \mathbb{Q}$. \\
+	Наистина, нека за някои $x, y \in X, x \le y, \\
+	f(x) = q_x \in \mathbb{Q}, f(y) = q_y \in \mathbb{Q}$ и $q_x = q_y$. \\
+	От избора на $q_x$ имаме, че $x < q_x = q_y < S(x)$. \\
+	От избора на $q_y$ имаме, че $x \le y < q_x = q_y < S(x)$. \\
+	Но $S(x)$ е най-малкият елемент на множеството $X$, такъв че $x < S(x)$. Следователно $y \le x$. Тогава $x = y$. \\
+	\\
+	Доказахме, че $f : X \rightarrowtail \mathbb{Q}$, а от това следва, че множеството $X$ е изброимо. \\
+	$\square$
+	
+	
+	\subsection*{Задача 9:}
+	Нека $\Lambda \not= {\O}$ и $\{A_\lambda\}_{\lambda \in \Lambda}$ е $\Lambda$-индексирана фамилия от множества. \\ \\
+	Нека $f$ е биекция на $\Lambda$ върху $\Lambda$ и $\Lambda$-индексираната фамилия от множества $\{B_\lambda\}_{\lambda \in \Lambda}$ е дефинирана така: $B_\lambda = A_{f(\lambda)}$ за всяко $\lambda \in \Lambda$. \\
+	Да се докаже, че:
+	$$\bigcup_{\lambda \in \Lambda}A_\lambda = \bigcup_{\lambda \in \Lambda}B_\lambda \text{ и } \bigcap_{\lambda \in \Lambda}A_\lambda = \bigcap_{\lambda \in \Lambda}B_\lambda$$
+	(Комутативен закон за безкрайните обединения и безкрайните сечения)
+
+	\subsection*{Решение:}
+	$x \in \underset{\lambda \in \Lambda}{\bigcup}A_\lambda \Longleftrightarrow \\
+	x \in \bigcup Range(A) \Longleftrightarrow \\
+	\exists \lambda(\lambda \in \Lambda\ \&\ x \in A(\lambda)) \Longleftrightarrow \\
+	\exists \lambda(\lambda \in \Lambda\ \&\ \exists \lambda_1(\lambda_1 \in \Lambda\ \&\ \lambda = f(\lambda_1)\ \&\ x \in A(\lambda))) \Longleftrightarrow \\
+	\exists \lambda \exists \lambda_1(\lambda \in \Lambda\ \&\ \lambda_1 \in \Lambda\ \&\ \lambda = f(\lambda_1)\ \&\ x \in A(\lambda)) \Longleftrightarrow \\
+	\exists \lambda_1(\exists \lambda(\lambda \in \Lambda\ \&\ \lambda = f(\lambda_1))\ \&\ \lambda_1 \in \Lambda\ \&\ x \in A(f(\lambda_1))) \Longleftrightarrow \\
+	\exists \lambda_1(\lambda_1 \in \Lambda\ \&\ x \in A(f(\lambda_1))) \Longleftrightarrow \\
+	\exists \lambda_1(\lambda_1 \in \Lambda\ \&\ x \in B(\lambda_1)) \Longleftrightarrow \\
+	x \in \underset{\lambda_1 \in \Lambda}{\bigcup}B_{\lambda_1} \Longleftrightarrow \\
+	x \in \underset{\lambda \in \Lambda}{\bigcup}B_\lambda$. \\
+	$\square$
+
+	
+	\subsection*{Задача 10 (ZFC):}
+	Нека $\langle A, \le_A \rangle$ е добре наредено множество. В множеството $^A\!\alpha$ на всички функции от $A$ към $\alpha$ дефинираме бинарната релация $\prec$ така:
+	$$f \prec g\ \longleftrightarrow\ (\exists a \in A)((\forall b \in A)(b <_A a \Rightarrow f(b) = g(b))\ \&\ f(a) < g(a)).$$
+	Проверете дали $\langle ^A\!\alpha, \preceq \rangle$ е добре наредено множество.
+	
+	\subsection*{Решение:}
+	Множеството $\langle ^A\!\alpha, \preceq \rangle$ НЕ е добре наредено. \\
+	Ще покажа, че съществува ${\O} \not= B \subseteq ^A\!\alpha$, което няма минимален елемент относно релацията $\prec$. \\
+	\\
+	Нека $A = \alpha = \omega$. \\
+	\\
+	Дефинираме функцията $f_n : \omega \to \{0,1\}$ по следния начин: \\
+	$f_n(k) = 
+	\begin{cases} 
+		0 & k < n \\
+		1 & k \ge n
+	\end{cases}$
+	\\ \\
+	$f_1 = \{\langle 1,1 \rangle , \langle 2,1 \rangle , \langle 3,1 \rangle ,..,\langle m,1 \rangle ,..\}$ \\
+	$f_2 = \{\langle 1,0 \rangle , \langle 2,1 \rangle , \langle 3,1 \rangle ,..,\langle m,1 \rangle ,..\}$ \\
+	$f_3 = \{\langle 1,0 \rangle , \langle 2,0 \rangle , \langle 3,1 \rangle ,..,\langle m,1 \rangle ,..\}$ \\
+	... \\
+	$f_m = \{\langle 1,0 \rangle , \langle 2,0 \rangle , \langle 3,0 \rangle ,..,\langle m-1,0 \rangle , \langle m,1 \rangle,..\}$ \\
+	... \\ \\
+	Множеството $B = \{f_n\ |\ n < \omega\}$ е непразно подмножество на $^\omega\!\omega$, тъй като за произволно $f_k \in B,\ Dom(f_k) = \omega \subseteq \omega,\ Range(f_k) = \{0,1\} \subseteq \omega$, следователно $f_k \in ^\omega\!\omega$. \\
+	\\
+	Твърдя, че множеството $B$ няма минимален елемент. \\
+	\\
+	Да разгледаме функциите $f_1 \in B$ и $f_2 \in B$. \\
+	$f_2 \prec f_1 \stackrel{\mathrm{def}}{\longleftrightarrow} (\exists a \in \omega)((\forall b \in \omega)(b < a \Rightarrow f_2(b) = f_1(b))\ \&\ f_2(a) < f_1(a)).$ \\
+	\\
+	Нека $a = 1$. \\
+	Тогава, наистина $((\forall b \in \omega)(b < 1 \Rightarrow f_2(b) = f_1(b))\ \&\ f_2(1) < f_1(1))$. \\
+	Следователно $f_2 \prec f_1$. \\
+	Аналогично, за: \\
+	$a = 2,\ f_3 \prec f_2 \prec f_1$, \\
+	... \\
+	$a = k,\ f_{k+1} \prec f_k \prec f_{k-1} \prec ... \prec f_3 \prec f_2 \prec f_1$. \\
+	\\
+	Но $\neg Fin(\omega)$. Следователно, редицата $f_1, f_2, f_3, .., f_k, ..$, такава че \\
+	$f_1 \succ f_2 \succ f_3 \succ ... \succ f_k \succ ...$, е безкрайна. \\
+	\\
+	Но в добре наредено множество не съществуват такива безкрайни редици. \\
+	Следователно, $\langle ^A\!\alpha, \preceq \rangle$ не е добре наредено. \\
+	$\square$
+\end{document}
