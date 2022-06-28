@@ -1,0 +1,94 @@
+% !TXS template
+\documentclass[french]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts} 
+\usepackage{xspace}
+ \usepackage{relsize}
+% Title Page
+
+
+\title{Задачи по Логическо Програмиране}
+\date{13.11.2021}
+
+
+\begin{document}
+\maketitle
+\author
+	
+\subsection*{{\Large Задача 1:}} {\Large 
+	Нека c е индивидна константа. } \\
+    \\
+$
+	\mathlarger{\mathlarger{\mathlarger{\varphi_1 := \forall x (p(x,x) \& r(x,x))}}}, \\
+	\\
+	\mathlarger{\mathlarger{\mathlarger{\varphi_2 := \forall x \forall y ((p(x,y)\Rightarrow p(y,x)) \& (r(x,y)\Rightarrow r(y,x)))}}}, \\
+	\\
+	\mathlarger{\mathlarger{\mathlarger{\varphi_3 := \forall x \forall y \forall z ((p(x,y) \& p(y,z)\Rightarrow p(x,z)) \& (r(x,y) \& r(y,z)\Rightarrow r(x,z)))}}}, \\
+	\\
+	\mathlarger{\mathlarger{\mathlarger{\varphi_4 := \forall x((r(x,c)\Rightarrow x = c) \& \exists y (p(x,y) \& \neg r(x,y)))}}}, \\
+	\\
+	\mathlarger{\mathlarger{\mathlarger{\varphi_5 := \forall x (\neg (x = c) \Rightarrow \exists y (r(x,y) \& \neg p(x,y)))}}}, \\ 
+	\\
+	\mathlarger{\mathlarger{\mathlarger{\varphi_6 := \forall x \forall y \forall z (p(x,y) \& p(y,z) \Rightarrow r(x,y) \vee r(x,z) \vee r(y,z))}}}. \\
+	\\
+$
+	{\Large 
+		Да се докаже, че множеството $ \Gamma_1 = \{\varphi_1,\varphi_2,\varphi_3,\varphi_4\} $ е изпълнимо. 
+	}
+
+\subsection*{{\Large Решение:}}
+	{\Large 
+	Ще се отървем от квантора за съществуване, като \textit{скуленизираме} $\varphi_4$: \\
+	$\varphi'_4	\leadsto \forall x((r(x,c)\Rightarrow x = c) \& (p(x,d) \& \neg r(x,d)))$ \\
+	\\
+	\textbf{1.} Ще докажем, че $ \mathbf{ \Gamma_1 = \{\varphi_1,\varphi_2,\varphi_3,\varphi_4\} } $ е изпълнимо. \\
+	\\
+	$\Gamma_1$ е изпълнимо, ако същестува структура $M$, такава че за всяко $\varphi \in \Gamma_1$ е вярно $M \models \varphi$. \\
+	\\
+	За решение използваме насочения граф $ \langle V,E \rangle $, където $ V = \{a,b\} $ и $ E = \{\langle a,b \rangle,\ \langle b,a \rangle,\ \langle a,a \rangle,\ \langle b,b \rangle\} $. \\
+	\\
+	Решението е структурата $\mathbf{ M = (V, p, r) } $, където: \\
+	$ \mathbf{ p^M (\mu_1, \mu_2) } \longleftrightarrow \langle \mu_1,\mu_2 \rangle \in \{\langle a,b \rangle,\ \langle b,a \rangle,\ \langle a,a \rangle,\ \langle b,b \rangle\} \\
+	\mathbf{ r^M (\mu_1, \mu_2) } \longleftrightarrow \langle \mu_1,\mu_2 \rangle \in \{\langle a,a \rangle,\ \langle b,b \rangle\} \\ 
+	\mathbf{ c^M } = a \\
+	\mathbf{ d^M } = a \\ $
+	}
+
+\subsection*{{\Large Задача 2:}} 
+	{\Large 
+	Нека $S$ е множеството от всички безкрайни редици от естествени числа. Ако $n \in \mathbb{N}$ и $\alpha \in S$, то с $\alpha_n$ ще означаваме $n$-тия член на редицата $\alpha$. Нека $\mathcal{L}$ е предикатният език без формално равенство и с един триместен предикатен символ $p$. Да означим с $\mathcal{A}$ структурата за $\mathcal{L}$, която е с универсум (носител) множеството $\mathbb{N} \cup S$ и за произволни $\alpha,\beta, l \in \mathbb{N} \cup S$ \\
+	$ \langle \alpha,\beta, l \rangle \in p^{\mathcal{A}} \stackrel{\mathrm{def}}{\longleftrightarrow} \alpha, \beta \in S,\ l \in \mathbb{N} $ и за всяко $ n \in \mathbb{N}\ \beta_{ln} = \alpha_n. $ \\
+	a) Да се докаже, че следните множества са определими в $\mathcal{A}$ с формула от $\mathcal{L}$: 
+	\begin{enumerate}
+		\item $ S, \{1\},\{0\}, $
+		\item $ \{\alpha\ |\ \alpha \in S\ \text{и всички членове на}\ \alpha\ \text{са равни}\ \}, $
+		\item $ \{ \langle a,b,c \rangle\ |\ a,b,c \in \mathbb{N}\ \text{и}\ c=ab \}. $	
+	\end{enumerate}
+	б) Да се докаже, че множеството $\{3\}$ не е определимо в $\mathcal{A}$ с
+	формула от $\mathcal{L}$.
+
+
+	\subsection*{{\Large Решение:}}
+		а) \\
+		$\varphi_{\mathbb{N}}[x] = \exists y \exists z (p(y,z,x))$ \textbf{определя $\mathbb{N}$}, \\
+		\\
+		$\varphi_S[x] = \neg \varphi_{\mathbb{N}}[x]$ 
+		\textbf{определя $S$}, \\
+		\\
+		$\varphi_{eq}[x] = \varphi_S[x] \& \forall y (\varphi_{\mathbb{N}}[y] \Rightarrow p(x,x,y))$ \\ 
+		\textbf{определя $\{\alpha\ |\ \alpha \in S\ \text{и всички членове на}\ \alpha\ \text{са равни}\ \}$}, \\
+		\\
+		$\varphi_0[x] = \varphi_{\mathbb{N}}[x] \& \forall y (\varphi_S[y] \& \neg \varphi_{eq}[y] \Rightarrow \neg p(y,y,x))$ \\ 
+		\textbf{определя $\{0\}$}, \\
+		\\
+		$\varphi_1[x] = \varphi_{\mathbb{N}}[x] \& \forall y (\varphi_S[y] \Rightarrow p(y,y,x))$ 
+		\textbf{определя $\{1\}$}, \\
+		\\
+		$\varphi_{\langle a,b,c \rangle}[x,y,z] = \varphi_{\mathbb{N}}[x] \& \varphi_{\mathbb{N}}[y] \& \varphi_{\mathbb{N}}[z] \& \forall u \forall v (p(u,v,x) \& p(u,v,y) \Leftrightarrow p(u,v,z))$ \\
+		\textbf{определя $\{ \langle a,b,c \rangle\ |\ a,b,c \in \mathbb{N}\ \text{и}\ c=ab \}$}.
+	}
+
+\end{document})
