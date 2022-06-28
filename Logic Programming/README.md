@@ -1,1 +1,0 @@
-# Logic_programming
