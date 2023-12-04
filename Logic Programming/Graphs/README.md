@@ -1,1 +1,1 @@
-![alt_text](https://i.ibb.co/CP4hMQw/16-12-21.png)
+![alt_text](https://github.com/MariaGrozdeva/Math_courses_FMI/blob/main/Logic%20Programming/Graphs/images/GraphsInProlog.png)
